@@ -72,9 +72,9 @@ void checkGrade(int &grade){			// grade checkup
 	}
 }
 
-void NewStudent(vector <Studentas> &studentas){			//Studento duomenu ivedimas (manualinis)				//WORKING
+void NewStudent(vector <Studentas> &studentas, char rt){			//Studento duomenu ivedimas (manualinis)				//WORKING
 	bool knownGradesNum, generateGrades;
-	int gradeNum;
+	int gradeNum, g, f;
 	string vardas, pavarde;
 	Studentas stud;
 	vector<int> nd;
@@ -91,9 +91,9 @@ void NewStudent(vector <Studentas> &studentas){			//Studento duomenu ivedimas (m
 		if(generateGrades){							// random skaiciu generavimas
 			gradeNum = stud.getHomeworkNum();
 			cout << endl << "Sugeneruoti studento pazymiai: ";
-			for(int i = 0; i < stud.getHomeworkNum(); i++){
-				nd[i] = rand() % 10 + 1;
-				cout << nd[i] << " ";
+			for(int i = 0; i < gradeNum; i++){
+				g = rand() % 10 + 1;
+				nd.push_back(g);
 			}
 			stud.setGrades(nd);
 			stud.setExam(rand() % 10 + 1);
@@ -102,8 +102,9 @@ void NewStudent(vector <Studentas> &studentas){			//Studento duomenu ivedimas (m
 		else {
 			cout << endl << "Iveskite atliktu namu darbu pazymius: " << endl;
 			for(int i = 0; i < stud.getHomeworkNum(); i++){
-				nd[i] = numInput();
-				checkGrade(nd[i]);
+				g = numInput();
+				checkGrade(g);
+				nd.push_back(g);
 			}
 			stud.setGrades(nd);
 			cout << endl << "Iveskite egzamino pazymi: ";
@@ -118,12 +119,11 @@ void NewStudent(vector <Studentas> &studentas){			//Studento duomenu ivedimas (m
 		if(generateGrades){								
 			gradeNum = stud.getHomeworkNum();
 			cout << endl << "Sugeneruoti studento pazymiai: ";
-			for(int i = 0; i < stud.getHomeworkNum(); i++){
-				nd[i] = rand() % 10 + 1;
-				cout << nd[i] << " ";
+			for(int i = 0; i < gradeNum; i++){
+				g = rand() % 10 + 1;
+				nd.push_back(g);
 			}
 			stud.setGrades(nd);
-
 			stud.setExam(rand() % 10 + 1);
 			cout << endl << "Egzamino rezultatas: " << stud.getExam();
 		}
@@ -131,14 +131,17 @@ void NewStudent(vector <Studentas> &studentas){			//Studento duomenu ivedimas (m
 		else {
 			cout << endl << "Iveskite atliktu namu darbu pazymius: " << endl;
 			for(int i = 0; i < stud.getHomeworkNum(); i++){
-				nd[i] = numInput();
-				checkGrade(nd[i]);
+				g = numInput();
+				checkGrade(g);
+				nd.push_back(g);
 			}
 			stud.setGrades(nd);
 			cout << endl << "Iveskite egzamino pazymi: ";
 			stud.setExam(gradeInput());
 		}
 	}
+	f = calcFinal(stud.getGrades(), stud.getExam(), stud.getHomeworkNum(), rt);
+	stud.setFinal(f);
 	studentas.push_back(stud);
 	nd.clear();
 }
@@ -153,6 +156,7 @@ void Ivestis(T &studentas, string fileName, char rt, bool timeOut){
 		getline(file, line);
 		while (getline(file, line)){
 			Studentas stud;
+			int f;
 			string vardas, pavarde;
 			istringstream iss(line);
 			iss >> vardas >> pavarde;
@@ -168,7 +172,8 @@ void Ivestis(T &studentas, string fileName, char rt, bool timeOut){
 			stud.setExam(g);
 			stud.setGrades(nd);
 			stud.setHomeworkNum(stud.getGrades().size());
-			stud.setFinal(calcFinal(stud.getGrades(), stud.getExam(), stud.getHomeworkNum(), rt));
+			f = calcFinal(stud.getGrades(), stud.getExam(), stud.getHomeworkNum(), rt);
+			stud.setFinal(f);
 			studentas.push_back(stud);
 		}
 	}
@@ -187,32 +192,17 @@ void Ivestis(T &studentas, string fileName, char rt, bool timeOut){
 }
 
 void isvestis(vector <Studentas> studentas, char rt){								// isvestis i konsole	
-	cout << "\n\n\n\n\n";
-	cout << left << setw(15) << "Vardas" << setw(15) << "Pavarde" << setw(18);
-	if(rt == '2') cout << "Galutinis (vid.)" << endl;
-	else if (rt == '1') cout << "Galutinis (med.)" << endl;
-	else cout << "Galutinis (vid.)" << setw(18) << "Galutinis (med.)" << endl;
-	if (rt == '3') cout << "----------------------------------------------------------------" << endl;
-	else cout << "-----------------------------------------------" << endl;
-	for(int i = 0; i < studentas.size(); i++){
-		double galutinisVid = 0;
-		double galutinisMed = 0;
-		double sum = 0;		//calc vid
-		int size = studentas[i].getGrades().size();
-		for(int j = 0; j < size; j++){
-			sum = sum + studentas[i].getGrades()[j];
-		}
-		double average = sum / size;
-		galutinisVid = studentas[i].getExam()*0.6 + average*0.4;
-		int vidI = (size/2)-1;			//calc med
-		sort(studentas[i].getGrades().begin(), studentas[i].getGrades().end());
-		if(size != 0) galutinisMed = studentas[i].getGrades()[vidI]*0.4 + studentas[i].getExam()*0.6;
-		else galutinisMed = ((studentas[i].getGrades()[vidI] + studentas[i].getGrades()[vidI+1])/2)*0.4 + studentas[i].getExam()*0.6;
-		//galutinis outputui
-		cout << left << setw(15) << studentas[i].getVardas() << setw(15) << studentas[i].getPavarde() << setw(18);
-		if(rt == '1')	cout << fixed << setprecision(2) << galutinisMed << endl;
-		else if (rt == '2')	cout << fixed << setprecision(2) << galutinisVid << endl;
-		else cout << fixed << setprecision(2) << galutinisVid << setw(18) << setprecision(2) << galutinisMed << endl;
+	string galutinis;
+
+	if(rt == '1') galutinis = "Galutinis (med.)";
+	else if (rt == '2') galutinis = "Galutinis (vid.)";
+
+	cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(18) << galutinis << endl
+	<< "----------------------------------------------------------------------" << endl;
+	for(auto stud : studentas){
+		cout << left << setw(20) << stud.getVardas() << 
+		setw(20) << stud.getPavarde() << 
+		setw(18) << fixed << setprecision(2) << stud.getFinal() << endl;
 	}
 }
 
@@ -234,16 +224,16 @@ void fileOutput(T winner, T loser, char rt, string outFileName){
 	else lout << "Galutinis (vid.)" << setw(18) << "Galutinis (med.)" << endl;
 	if (rt == '3') lout << "-----------------------------------------------------------------------------------------------------" << endl;
 	else lout << "-------------------------------------------------------------------" << endl;
-	while(loser.size() > 0){
-		lout << left << setw(20) << loser.front().getVardas() << setw(20) << loser.front().getPavarde() << setw(18);
-		lout << fixed << setprecision(2) << round(loser.front().getFinal()) << endl;
-		loser.erase(loser.begin());
+	for(auto &a:loser){
+		lout << left << setw(20) << a.vardas << setw(20) << a.pavarde << setw(18);
+		lout << fixed << setprecision(2) << round(a.final) << endl;
+		///loser.erase(loser.begin());
 	}		
 	lout.close();
-	while(winner.size() > 0){			
-		wout << left << setw(20) << winner.front().getVardas() << setw(20) << winner.front().getPavarde() << setw(18);
-		wout << fixed << setprecision(2) << round(winner.front().getFinal()) << endl;
-		winner.erase(winner.begin());
+	for(auto &a:winner){			
+		lout << left << setw(20) << a.vardas << setw(20) << a.pavarde << setw(18);
+		lout << fixed << setprecision(2) << round(a.final) << endl;
+		///winner.erase(winner.begin());
 	}
 	wout.close();
 }

@@ -15,7 +15,7 @@ int main(){
 			}
 			else{
 				do{
-					NewStudent(studentas);
+					NewStudent(studentas, rt);
 					cout << endl << "Ar norite prideti dar viena studenta? (Y/N) ";
 				} while(Checker());
 			}
@@ -23,7 +23,7 @@ int main(){
 		else {			// only manual input
 			cout << "Failas nerastas. Duomenys privalo buti ivesti rankiniu budu." << endl << endl;
 			do{
-				NewStudent(studentas);
+				NewStudent(studentas, rt);
 				cout << endl << "Ar norite prideti dar viena studenta? (Y/N) ";
 			} while(Checker());
 		}

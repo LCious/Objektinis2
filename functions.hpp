@@ -16,14 +16,6 @@
 using namespace std;
 using namespace std::chrono;
 
-// struct Studentai{
-// 	string vardas;
-// 	string pavarde;
-// 	int homeworkNum;
-// 	vector <int> grades;
-// 	int exam;
-// 	double final;
-// };
 
 class Studentas {
 private:
@@ -45,13 +37,30 @@ public:
 	inline int getFinal() const { return final; }
 
 	// -------------------- Setteriai -----------------------
-	inline void setVardas(std::string vardas) { Studentas::vardas = vardas; }
-	inline void setPavarde(std::string pavarde) { Studentas::pavarde = pavarde; }
+	inline void setVardas(std::string _vardas) { Studentas::vardas = _vardas; }
+	inline void setPavarde(std::string _pavarde) { Studentas::pavarde = _pavarde; }
 	// inline void set1grade(int g) { grades.push_back(g); }
-	inline void setGrades(std::vector<int> nd) { Studentas::grades = nd; }
-	inline void setExam(int exam) { Studentas::exam = exam; }
-	inline void setHomeworkNum(int homeworkNum) { Studentas::homeworkNum = homeworkNum; }
-	inline void setFinal(double final) { Studentas::final = final; }
+	inline void setGrades(std::vector<int> _nd) { Studentas::grades = _nd; }
+	inline void setExam(int _exam) { Studentas::exam = _exam; }
+	inline void setHomeworkNum(int _homeworkNum) { Studentas::homeworkNum = _homeworkNum; }
+	inline void setFinal(double _final) { Studentas::final = _final; }
+
+	Studentas(const Studentas& other) :					// copy constructor
+		vardas(other.vardas), pavarde(other.pavarde),
+		grades(other.grades), exam(other.exam),
+		homeworkNum(other.homeworkNum), final(other.final) {}
+
+	Studentas& operator = (const Studentas& other){		//copy assignment operator
+		vardas = other.vardas;
+		pavarde = other.pavarde;
+		grades = other.grades;
+		exam = other.exam;
+		homeworkNum = other.homeworkNum;
+		final = other.final;
+		return *this;
+	}
+
+	~Studentas() {}; //Destructor
 };
 
 bool Checker();
@@ -61,7 +70,7 @@ int numInput();
 int gradeInput();
 void checkGrade(int&);
 
-void NewStudent(vector <Studentas>&);
+void NewStudent(vector <Studentas>&, char);
 
 template <class T>
 void Ivestis(T&, string, char, bool);

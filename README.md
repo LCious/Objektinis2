@@ -264,3 +264,6 @@ class -O3 | 0.058s. | 0.544s. |   5.3s. |   61.8s.  |
   * `Studentas` struktūra pakeista į klasę.
   * Atliktas spartos palyginimas tarp `struct` ir `class`.
   * Atlikta eksperimentinė analizė tarp skirtingų optimizavimo lygių, nurodomų flag'ais (`-O1`, `-O2`, `-O3`).
+
+[v1.2](https://github.com/LCious/Objektinis2/releases/tag/v1.2) :
+  * Realizuota `Rule of Three`.
