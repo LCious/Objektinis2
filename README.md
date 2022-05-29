@@ -214,6 +214,17 @@ Failas kursiokai1000000.txt
 Studentu rusiavimas i dvi grupes uztruko: 0.722s.
 Bendras failo kursiokai1000000.txt testavimo laikas: 110.576s.
 ```
+#### Struct ir Class palyginimas ####
+
+Lentelėje pavaizduoti bendri programos veikimo laikai.
+
+Container |   1000  |  10000  |  100000 |  1000000  |
+----------|---------|---------|---------|-----------|
+class     | 0.095s. | 0.9s.   |    10s. |    115s.  |
+struct    | 0.016s. | 0.152s. | 13.513s.| 130.762s. |
+class -O1 | 0.067s. | 0.548s. |   5.9s. |    61.3s. |
+class -O2 | 0.065s. | 0.527s. | 6.082s. | 56.704s.  |
+class -O3 | 0.058s. | 0.544s. |   5.3s. |   61.8s.  |
 
 
 # Programos įdiegimas ir naudojimasis #
@@ -221,7 +232,6 @@ Bendras failo kursiokai1000000.txt testavimo laikas: 110.576s.
 * Atsisiųskite vieną programos versijų iš [Releases](https://github.com/LCious/Objektinis/releases) aplanko ir ją išarchyvuokite.
 * Atsisiųskite jums patinkančią __C++__ palaikančią programą (_[Visual Studio](https://visualstudio.microsoft.com/downloads/), [CodeBlocks](https://www.codeblocks.org/downloads/)_).
 * Atsidarykite pateiktą programos kodą ir jį paleiskite arba komandinėje eiltuėje įrašykite `g++ -o main *.cpp` ir paleiskite su `./main`
-
 
 # Releases #
 
@@ -249,3 +259,8 @@ Bendras failo kursiokai1000000.txt testavimo laikas: 110.576s.
 [v1.0](https://github.com/LCious/Objektinis/releases/tag/v1.0) :
   * Sukurta testavimo funkcija, leidžianti pasirinkti testavimo strategijos būdą.
   * Sukurta funkcija, leidžianti palyginti testavimo rezultatus tarp paprasto ir optimizuoto vektoriaus.
+
+[v1.1](https://github.com/LCious/Objektinis2/releases/tag/v1.1) :
+  * `Studentas` struktūra pakeista į klasę.
+  * Atliktas spartos palyginimas tarp `struct` ir `class`.
+  * Atlikta eksperimentinė analizė tarp skirtingų optimizavimo lygių, nurodomų flag'ais (`-O1`, `-O2`, `-O3`).

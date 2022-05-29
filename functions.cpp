@@ -1,6 +1,11 @@
 #include "functions.hpp"
 using namespace std;
 
+Studentas::Studentas(std::string name,  std::string surname){
+    this->vardas = name;
+    this->pavarde = surname;
+}
+
 bool Checker(){							// Y/N tikrinimas
 	while(true){
 		char ats;
@@ -33,7 +38,7 @@ char choiceCheck2(char &rt){
 	}
 }
 
-int numCheck(){							//Skaiciu inputo tikrinimas
+int numInput(){							//Skaiciu inputo tikrinimas
 	int num = 0;
 	while(true){
 		cin >> num;
@@ -46,84 +51,100 @@ int numCheck(){							//Skaiciu inputo tikrinimas
 	}
 }
 
-void gradeCheck(int &grade){			// grade checkup
+int gradeInput(){
+	int grade = 0;
+	while(true){
+		cin >> grade;
+		if(grade <= 10 && grade > 0) return grade;
+		
+		else {
+			cin.clear(); cin.ignore(999, '\n');
+			cout << "Wrong input. Try again." << endl;
+		}
+	}
+}
+
+void checkGrade(int &grade){			// grade checkup
 	while(true){
 		if(grade <= 10 && grade > 0) break;
 		else cout << "Wrong input. Try again.";
-		grade = numCheck();
+		grade = numInput();
 	}
 }
 
 void NewStudent(vector <Studentas> &studentas){			//Studento duomenu ivedimas (manualinis)				//WORKING
 	bool knownGradesNum, generateGrades;
 	int gradeNum;
+	string vardas, pavarde;
 	Studentas stud;
-	cout << "Iveskite studento varda: "; cin >> stud.vardas; cout << endl;
-	cout << "Iveskite studento pavarde: "; cin >> stud.pavarde; cout << endl;
+	vector<int> nd;
+	cout << "Iveskite studento varda: "; cin >> vardas; cout << endl;
+	cout << "Iveskite studento pavarde: "; cin >> pavarde; cout << endl;
+	stud.setVardas(vardas); stud.setPavarde(pavarde);
 	cout << "Ar zinote atliktu namu darbu kieki? (Y/N): ";
 	knownGradesNum = Checker();
 	if(knownGradesNum){
 		cout << endl << "Iveskite atliktu namu darbu kieki: ";
-		stud.homeworkNum = numCheck();
-		stud.pazymiai.resize(stud.homeworkNum);
+		stud.setHomeworkNum(numInput());
 		cout << endl << "Ar norite, kad studento pazymiai butu sugeneruojami automatiskai? (Y/N): ";
 		generateGrades = Checker();
 		if(generateGrades){							// random skaiciu generavimas
-			gradeNum = stud.homeworkNum;
-			stud.pazymiai.resize(gradeNum);
+			gradeNum = stud.getHomeworkNum();
 			cout << endl << "Sugeneruoti studento pazymiai: ";
-			for(int i = 0; i < stud.homeworkNum; i++){
-				stud.pazymiai[i] = rand() % 10 + 1;
-				cout << stud.pazymiai[i] << " ";
+			for(int i = 0; i < stud.getHomeworkNum(); i++){
+				nd[i] = rand() % 10 + 1;
+				cout << nd[i] << " ";
 			}
-			stud.exam = rand() % 10 + 1;
-			cout << endl << "Egzamino rezultatas: " << stud.exam;
+			stud.setGrades(nd);
+			stud.setExam(rand() % 10 + 1);
+			cout << endl << "Egzamino rezultatas: " << stud.getExam();
 		}
 		else {
 			cout << endl << "Iveskite atliktu namu darbu pazymius: " << endl;
-			for(int i = 0; i < stud.homeworkNum; i++){
-				stud.pazymiai[i] = numCheck();
-				gradeCheck(stud.pazymiai[i]);
+			for(int i = 0; i < stud.getHomeworkNum(); i++){
+				nd[i] = numInput();
+				checkGrade(nd[i]);
 			}
+			stud.setGrades(nd);
 			cout << endl << "Iveskite egzamino pazymi: ";
-			stud.exam = numCheck();
-			gradeCheck(stud.exam);
+			stud.setExam(gradeInput());
 		}
 	}
 	else{
-		stud.homeworkNum = rand() % 25 + 1;				// homework number range: 1-25
-		cout << endl << "Sugeneruotas atliktu namu darbu kiekis: " << stud.homeworkNum << endl;
+		stud.setHomeworkNum(rand() % 25 + 1);				// homework number range: 1-25
+		cout << endl << "Sugeneruotas atliktu namu darbu kiekis: " << stud.getHomeworkNum() << endl;
 		cout << endl << "Ar norite, kad studento pazymiai butu sugeneruojami automatiskai? (Y/N): ";
 		generateGrades = Checker();
-		if(generateGrades){								// random skaiciu generavimas
-			gradeNum = stud.homeworkNum;
-			stud.pazymiai.resize(gradeNum);
+		if(generateGrades){								
+			gradeNum = stud.getHomeworkNum();
 			cout << endl << "Sugeneruoti studento pazymiai: ";
-			for(int i = 0; i < stud.homeworkNum; i++){
-				stud.pazymiai[i] = rand() % 10 + 1;
-				cout << stud.pazymiai[i] << " ";
+			for(int i = 0; i < stud.getHomeworkNum(); i++){
+				nd[i] = rand() % 10 + 1;
+				cout << nd[i] << " ";
 			}
-			stud.exam = rand() % 10 + 1;
-			cout << endl << "Egzamino rezultatas: " << stud.exam;
+			stud.setGrades(nd);
+
+			stud.setExam(rand() % 10 + 1);
+			cout << endl << "Egzamino rezultatas: " << stud.getExam();
 		}
+
 		else {
 			cout << endl << "Iveskite atliktu namu darbu pazymius: " << endl;
-			stud.pazymiai.resize(stud.homeworkNum);
-			for(int i = 0; i < stud.homeworkNum; i++){
-				stud.pazymiai[i] = numCheck();
-				gradeCheck(stud.pazymiai[i]);
+			for(int i = 0; i < stud.getHomeworkNum(); i++){
+				nd[i] = numInput();
+				checkGrade(nd[i]);
 			}
+			stud.setGrades(nd);
 			cout << endl << "Iveskite egzamino pazymi: ";
-			stud.exam = numCheck();
-			gradeCheck(stud.exam);
+			stud.setExam(gradeInput());
 		}
 	}
 	studentas.push_back(stud);
-	stud.pazymiai.clear();
+	nd.clear();
 }
 
 template <class T>
-void Ivestis(T &studentas, string fileName, char rt, bool timeOut){			// ivestis
+void Ivestis(T &studentas, string fileName, char rt, bool timeOut){
 	ifstream file;
 	try{
 		file.open(fileName);
@@ -132,17 +153,22 @@ void Ivestis(T &studentas, string fileName, char rt, bool timeOut){			// ivestis
 		getline(file, line);
 		while (getline(file, line)){
 			Studentas stud;
+			string vardas, pavarde;
 			istringstream iss(line);
-			iss >> stud.vardas >> stud.pavarde;
+			iss >> vardas >> pavarde;
+			stud.setVardas(vardas); stud.setPavarde(pavarde);
+			vector<int> nd;
 			int g;
 			while (iss >> g){
-				stud.pazymiai.push_back(g);
+				nd.push_back(g);
 			}
-			if (stud.pazymiai.size() == 0) throw 2;
-			stud.pazymiai.pop_back();
-			stud.exam = g;
-			stud.homeworkNum = stud.pazymiai.size();
-			stud.final = calcFinal(stud.pazymiai, stud.exam, stud.homeworkNum, rt);
+			if (nd.size() == 0) throw 2;
+
+			nd.pop_back();
+			stud.setExam(g);
+			stud.setGrades(nd);
+			stud.setHomeworkNum(stud.getGrades().size());
+			stud.setFinal(calcFinal(stud.getGrades(), stud.getExam(), stud.getHomeworkNum(), rt));
 			studentas.push_back(stud);
 		}
 	}
@@ -160,7 +186,7 @@ void Ivestis(T &studentas, string fileName, char rt, bool timeOut){			// ivestis
 	file.close();
 }
 
-void isvestis(vector <Studentas> studentas, char rt){						// isvestis i konsole
+void isvestis(vector <Studentas> studentas, char rt){								// isvestis i konsole	
 	cout << "\n\n\n\n\n";
 	cout << left << setw(15) << "Vardas" << setw(15) << "Pavarde" << setw(18);
 	if(rt == '2') cout << "Galutinis (vid.)" << endl;
@@ -172,25 +198,26 @@ void isvestis(vector <Studentas> studentas, char rt){						// isvestis i konsole
 		double galutinisVid = 0;
 		double galutinisMed = 0;
 		double sum = 0;		//calc vid
-		int size = studentas[i].pazymiai.size();
+		int size = studentas[i].getGrades().size();
 		for(int j = 0; j < size; j++){
-			sum = sum + studentas[i].pazymiai[j];
+			sum = sum + studentas[i].getGrades()[j];
 		}
 		double average = sum / size;
-		galutinisVid = studentas[i].exam*0.6 + average*0.4;
+		galutinisVid = studentas[i].getExam()*0.6 + average*0.4;
 		int vidI = (size/2)-1;			//calc med
-		sort(studentas[i].pazymiai.begin(), studentas[i].pazymiai.end());
-		if(size != 0) galutinisMed = studentas[i].pazymiai[vidI]*0.4 + studentas[i].exam*0.6;
-		else galutinisMed = ((studentas[i].pazymiai[vidI] + studentas[i].pazymiai[vidI+1])/2)*0.4 + studentas[i].exam*0.6;
+		sort(studentas[i].getGrades().begin(), studentas[i].getGrades().end());
+		if(size != 0) galutinisMed = studentas[i].getGrades()[vidI]*0.4 + studentas[i].getExam()*0.6;
+		else galutinisMed = ((studentas[i].getGrades()[vidI] + studentas[i].getGrades()[vidI+1])/2)*0.4 + studentas[i].getExam()*0.6;
 		//galutinis outputui
-		cout << left << setw(15) << studentas[i].vardas << setw(15) << studentas[i].pavarde << setw(18);
+		cout << left << setw(15) << studentas[i].getVardas() << setw(15) << studentas[i].getPavarde() << setw(18);
 		if(rt == '1')	cout << fixed << setprecision(2) << galutinisMed << endl;
 		else if (rt == '2')	cout << fixed << setprecision(2) << galutinisVid << endl;
 		else cout << fixed << setprecision(2) << galutinisVid << setw(18) << setprecision(2) << galutinisMed << endl;
 	}
 }
+
 template <class T>
-void fileOutput(T winner, T loser, char rt, string outFileName){
+void fileOutput(T winner, T loser, char rt, string outFileName){		
 	string wfile = "Winner_" + outFileName;
 	string lfile = "Loser_" + outFileName;
 	ofstream wout(wfile);
@@ -208,14 +235,14 @@ void fileOutput(T winner, T loser, char rt, string outFileName){
 	if (rt == '3') lout << "-----------------------------------------------------------------------------------------------------" << endl;
 	else lout << "-------------------------------------------------------------------" << endl;
 	while(loser.size() > 0){
-		lout << left << setw(20) << loser.front().vardas << setw(20) << loser.front().pavarde << setw(18);
-		lout << fixed << setprecision(2) << round(loser.front().final) << endl;
+		lout << left << setw(20) << loser.front().getVardas() << setw(20) << loser.front().getPavarde() << setw(18);
+		lout << fixed << setprecision(2) << round(loser.front().getFinal()) << endl;
 		loser.erase(loser.begin());
 	}		
 	lout.close();
 	while(winner.size() > 0){			
-		wout << left << setw(20) << winner.front().vardas << setw(20) << winner.front().pavarde << setw(18);
-		wout << fixed << setprecision(2) << round(winner.front().final) << endl;
+		wout << left << setw(20) << winner.front().getVardas() << setw(20) << winner.front().getPavarde() << setw(18);
+		wout << fixed << setprecision(2) << round(winner.front().getFinal()) << endl;
 		winner.erase(winner.begin());
 	}
 	wout.close();
@@ -230,9 +257,9 @@ void print(T studentas, char rt, string outFileName){
 	out << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(18) << galutinis << endl
 	<< "----------------------------------------------------------------------" << endl;
 	for(auto stud : studentas){
-		out << left << setw(20) << stud.vardas << 
-		setw(20) << stud.pavarde << 
-		setw(18) << fixed << setprecision(2) << stud.final << endl;
+		out << left << setw(20) << stud.getVardas() << 
+		setw(20) << stud.getPavarde() << 
+		setw(18) << fixed << setprecision(2) << stud.getFinal() << endl;
 	}
 }
 
@@ -245,10 +272,9 @@ bool FileExist(){		// Failo patikrinimas
 }
 
 bool studComp(Studentas a, Studentas b){			// rusiavimas
-	if(a.vardas < b.vardas) return true;
+	if(a.getVardas() < b.getVardas()) return true;
 	else return false;
 }
-
 
 void generateStud(int fStudSize, string fileName){						// failo kurimas
 	int a = 10;
@@ -269,6 +295,7 @@ void generateStud(int fStudSize, string fileName){						// failo kurimas
 
 double calcFinal(vector <int> pazymiai, int exam, int homeworkNum, char rt){
 	double final;
+	Studentas stud;
 	if(rt == '2'){
 					//calc vid
 		int sum;
@@ -291,8 +318,8 @@ double calcFinal(vector <int> pazymiai, int exam, int homeworkNum, char rt){
 template <class T>
 void group_strat1(T studentas, T &winner, T &loser, int studNum){						// 2 new containers
 	high_resolution_clock::time_point t1 = high_resolution_clock::now();
-	copy_if(studentas.begin(), studentas.end(), back_inserter(winner), [](Studentas const& stud) {return stud.final >= 5; });
-	copy_if(studentas.begin(), studentas.end(), back_inserter(loser), [](Studentas const& stud) {return stud.final < 5; });  
+	copy_if(studentas.begin(), studentas.end(), back_inserter(winner), [](Studentas const& stud) {return stud.getFinal() >= 5; });
+	copy_if(studentas.begin(), studentas.end(), back_inserter(loser), [](Studentas const& stud) {return stud.getFinal() < 5; });  
 	cout << "Studentu rusiavimas i dvi grupes uztruko: " << chrono:: duration_cast<chrono::milliseconds>(chrono::high_resolution_clock::now() - t1).count() / 1000. << "s." << endl;
 }
 
@@ -300,7 +327,7 @@ void group_strat1(T studentas, T &winner, T &loser, int studNum){						// 2 new 
 template <class T>
 void group_strat2(T &studentas, T &loser, int studNum){									// 1 new and 1 existing containers
 	high_resolution_clock::time_point t1 = high_resolution_clock::now();
-	auto it = stable_partition(studentas.begin(), studentas.end(), [](Studentas const& stud) {return stud.final >= 5;});
+	auto it = stable_partition(studentas.begin(), studentas.end(), [](Studentas const& stud) {return stud.getFinal() >= 5;});
 	loser.assign(it, studentas.end());
 	studentas.erase(it, studentas.end());
 	cout << "Studentu rusiavimas i dvi grupes uztruko: " << chrono:: duration_cast<chrono::milliseconds>(chrono::high_resolution_clock::now() - t1).count() / 1000. << "s." << endl;
@@ -309,10 +336,8 @@ void group_strat2(T &studentas, T &loser, int studNum){									// 1 new and 1 e
 template <class T>
 void group_optimised_vector(T &studentas, T &loser, int studNum){
 	high_resolution_clock::time_point t1 = high_resolution_clock::now();
-
-	copy_if(studentas.begin(), studentas.end(), back_inserter(loser), [](Studentas const& stud) {return stud.final < 5; });
-	studentas.erase(remove_if(studentas.begin(), studentas.end(), [](Studentas const& stud) {return stud.final < 5; }), studentas.end());
-
+	copy_if(studentas.begin(), studentas.end(), back_inserter(loser), [](Studentas const& stud) {return stud.getFinal() < 5; });
+	studentas.erase(remove_if(studentas.begin(), studentas.end(), [](Studentas const& stud) {return stud.getFinal() < 5; }), studentas.end());
 	cout << "Studentu rusiavimas i dvi grupes uztruko: " << chrono:: duration_cast<chrono::milliseconds>(chrono::high_resolution_clock::now() - t1).count() / 1000. << "s." << endl;
 }
 
@@ -320,8 +345,10 @@ void group_optimised_vector(T &studentas, T &loser, int studNum){
 
 template <class T>
 void mainFunc(T studentas, T winner, T loser, bool genStud, char rt, char strat){
-	int a = 5;			// size dydis
-	int size[5] = {1000, 10000, 100000, 1000000, 10000000};
+
+	int a = 4;			// size dydis
+	int size[4] = {1000, 10000, 100000, 1000000};
+
 	if(strat == '1'){
 		for(int i = 0; i < a; i++){
 			string kursiokai = "kursiokai" + to_string(size[i]) + ".txt";
@@ -376,8 +403,10 @@ void mainFunc(T studentas, T winner, T loser, bool genStud, char rt, char strat)
 
 template <class T>
 void mainFuncForList(T studentas, T winner, T loser, bool genStud, char rt, char strat){
-	int a = 5;
-	int size[5] = {1000, 10000, 100000, 1000000, 10000000};
+
+	int a = 3;
+
+	int size[4] = {1000, 10000, 100000, 1000000};
 	if(strat == '1'){
 		for(int i = 0; i < a; i++){
 			string kursiokai = "kursiokai" + to_string(size[i]) + ".txt";
@@ -460,6 +489,7 @@ void benchmark(){
 	cout << endl << "Ar norite apskaiciuoti mediana(1), vidurki(2)? ";
 	choiceCheck2(rt);
 	if(strat == '1') {
+		
 		cout << "NAUDOJAMA 1 STRATEGIJA. " << endl;
 
 		cout << endl << "--------------------------- Pradedamas testavimas naudojant vector: -----------------------------------------------" << endl;
@@ -471,6 +501,7 @@ void benchmark(){
 		cout << endl << "----------------------------- Pradedamas testavimas naudojant list: ---------------------------------------------" << endl;
 		benchmarkingList(genStud, rt, strat);
 	}
+
 	else if(strat == '2') {
 		cout << "NAUDOJAMA 2 STRATEGIJA. " << endl;
 
@@ -483,13 +514,10 @@ void benchmark(){
 		cout << endl << "----------------------------- Pradedamas testavimas naudojant list: ---------------------------------------------" << endl;
 		benchmarkingList(genStud, rt, strat);
 	}
+
 	else {
 		cout << "VYKDOMAS VECTOR VEIKIMO SPARTOS PALYGINIMAS. " << endl
 		<< "(Palyginimui naudojama antroji strategija) " << endl;
-
-		cout << endl << "--------------------------- Pradedamas testavimas naudojant vector: -----------------------------------------------" << endl;
-		benchmarkingVector(genStud, rt, '2');
-
 		cout << endl << "--------------------------- Pradedamas testavimas naudojant optimizuota vector: -----------------------------------------------" << endl;
 		benchmarkingVector(genStud, rt, '3');
 	}

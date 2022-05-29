@@ -8,8 +8,6 @@ int main(){
 	if(Checker())	benchmark();
 	else{						// iprasta programos eiga
 		vector <Studentas> studentas;
-		vector <Studentas> winner;
-		vector <Studentas> loser;
 		if(FileExist()){
 			cout << "Ar norite skaityti duomenis is failo ar duomenis ivesti rankiniu budu? (y - file / n - manually): ";
 			if(Checker()){
