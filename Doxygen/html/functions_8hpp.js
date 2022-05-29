@@ -1,0 +1,28 @@
+var functions_8hpp =
+[
+    [ "Person", "class_person.html", "class_person" ],
+    [ "Studentas", "class_studentas.html", "class_studentas" ],
+    [ "benchmark", "functions_8hpp.html#a05f60aa14719d33e2a487063a92dc022", null ],
+    [ "benchmarkingDeque", "functions_8hpp.html#a29a758e459136684f0db6aa0f0244658", null ],
+    [ "benchmarkingList", "functions_8hpp.html#a83731427b8b33961fcc348ec5f73dde6", null ],
+    [ "benchmarkingVector", "functions_8hpp.html#a6026110a612fc2a2698d82c36aeada56", null ],
+    [ "calcFinal", "functions_8hpp.html#a7b640456d1a901e5b8d6ddd3adb083c0", null ],
+    [ "Checker", "functions_8hpp.html#a41d84f0a316da0a1a0f5bfd2f309ae6f", null ],
+    [ "checkGrade", "functions_8hpp.html#a8977cf73424054671a472e3d64c9d4c3", null ],
+    [ "choiceCheck", "functions_8hpp.html#ad7a9e05584e0ed3b764f61fdca38280f", null ],
+    [ "choiceCheck2", "functions_8hpp.html#a5f124b0d135e2f8a4833d8861e67dc40", null ],
+    [ "FileExist", "functions_8hpp.html#af8e85edc8ed96c1414816c5f86e4ea30", null ],
+    [ "generateStud", "functions_8hpp.html#a8a464b58a4d1e512034aa4a7b630f989", null ],
+    [ "gradeInput", "functions_8hpp.html#a6c2f05589f47ca82cc79046e27df8803", null ],
+    [ "group_optimised_vector", "functions_8hpp.html#a734dd3becad6134aed973ac94495a8b8", null ],
+    [ "group_strat1", "functions_8hpp.html#a3f69ee082370396855b23a4f5c095d19", null ],
+    [ "group_strat2", "functions_8hpp.html#ab7d9a517652a56f929caa29b5575c8d3", null ],
+    [ "isvestis", "functions_8hpp.html#a8f4600cba7842edf1933849715a51959", null ],
+    [ "Ivestis", "functions_8hpp.html#a15a3ae96939c2f9d9e1c7f28323d0a37", null ],
+    [ "mainFunc", "functions_8hpp.html#ab2aebf74493700c169a022eb5dead26c", null ],
+    [ "mainFuncForList", "functions_8hpp.html#a4569faeb7aa66f19c726d02807d0bf44", null ],
+    [ "NewStudent", "functions_8hpp.html#a029852b91c011420479748e69004b787", null ],
+    [ "numInput", "functions_8hpp.html#a1f2da3f7dff542775addda5a8ec4c0ea", null ],
+    [ "print", "functions_8hpp.html#ab0e9234bb733348e26b2369fb41a6863", null ],
+    [ "studComp", "functions_8hpp.html#a3c2eb480a8818fc2039d75f4317c6ac4", null ]
+];

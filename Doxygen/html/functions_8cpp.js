@@ -1,0 +1,26 @@
+var functions_8cpp =
+[
+    [ "benchmark", "functions_8cpp.html#a05f60aa14719d33e2a487063a92dc022", null ],
+    [ "benchmarkingDeque", "functions_8cpp.html#a0a380d2ca33c3b80bb8dbe23b5742437", null ],
+    [ "benchmarkingList", "functions_8cpp.html#a72e27e0ddaab948b2c32b609dc4a9278", null ],
+    [ "benchmarkingVector", "functions_8cpp.html#adf902b52b1e7e9aa01615fa6d0487311", null ],
+    [ "calcFinal", "functions_8cpp.html#ae0d63e24feea60e24a8bb7e5519763d8", null ],
+    [ "Checker", "functions_8cpp.html#a41d84f0a316da0a1a0f5bfd2f309ae6f", null ],
+    [ "checkGrade", "functions_8cpp.html#ad599635e8ff1ec1474429eff79453798", null ],
+    [ "choiceCheck", "functions_8cpp.html#a632efd6246369e03d7545b8ec714fc46", null ],
+    [ "choiceCheck2", "functions_8cpp.html#a95fdc18e20263358e7f3502d21b95c36", null ],
+    [ "FileExist", "functions_8cpp.html#af8e85edc8ed96c1414816c5f86e4ea30", null ],
+    [ "generateStud", "functions_8cpp.html#aea4bac2cd27ad269176a1830b10be24f", null ],
+    [ "gradeInput", "functions_8cpp.html#a6c2f05589f47ca82cc79046e27df8803", null ],
+    [ "group_optimised_vector", "functions_8cpp.html#a4f758138f90f912bd0745fb160dbef82", null ],
+    [ "group_strat1", "functions_8cpp.html#a3770f9de117dcf803fa8125d475de332", null ],
+    [ "group_strat2", "functions_8cpp.html#a6fccce2155d093e30126b06587332b0c", null ],
+    [ "isvestis", "functions_8cpp.html#a61585986f0d5292f7228e455b5e89854", null ],
+    [ "Ivestis", "functions_8cpp.html#a90017ad01399ad57dcb5b8c45d8749dc", null ],
+    [ "mainFunc", "functions_8cpp.html#a4f5ca47ba81831fa772d78a32c411d5c", null ],
+    [ "mainFuncForList", "functions_8cpp.html#ab605aadc6ae8a7981bf25256f07e4cd8", null ],
+    [ "NewStudent", "functions_8cpp.html#ac78729db806023858e94b97a878bea7f", null ],
+    [ "numInput", "functions_8cpp.html#a1f2da3f7dff542775addda5a8ec4c0ea", null ],
+    [ "print", "functions_8cpp.html#a109471197d79505a90979a9b240a4b0d", null ],
+    [ "studComp", "functions_8cpp.html#a2b57cb215d1f52f06b34bb5c9c6b8a7d", null ]
+];
