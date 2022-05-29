@@ -1,0 +1,15 @@
+﻿  test.cpp
+C:\Users\LC\Desktop\Objektinis\v2.0\Uzduotis\functions.hpp(50,39): warning C4244: 'return': conversion from 'const double' to 'int', possible loss of data
+C:\Users\LC\Desktop\Objektinis\v2.0\Uzduotis\functions.cpp(143,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\LC\Desktop\Objektinis\v2.0\Uzduotis\functions.cpp(175,17): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\LC\Desktop\Objektinis\v2.0\Uzduotis\functions.cpp(349): message : see reference to function template instantiation 'void Ivestis<T>(T &,std::string,char,bool)' being compiled
+          with
+          [
+              T=std::vector<Studentas,std::allocator<Studentas>>
+          ]
+C:\Users\LC\Desktop\Objektinis\v2.0\Uzduotis\functions.cpp(441): message : see reference to function template instantiation 'void mainFunc<std::vector<Studentas,std::allocator<Studentas>>>(T,T,T,bool,char,char)' being compiled
+          with
+          [
+              T=std::vector<Studentas,std::allocator<Studentas>>
+          ]
+  Test.vcxproj -> C:\Users\LC\Desktop\Objektinis\v2.0\Test\Debug\Test.exe
