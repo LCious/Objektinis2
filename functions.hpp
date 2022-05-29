@@ -16,11 +16,24 @@
 using namespace std;
 using namespace std::chrono;
 
-
-class Studentas {
-private:
+class Person{
+protected:
 	string vardas;
 	string pavarde;
+public:
+	Person() { };
+	//--
+	inline std::string getVardas() const {return vardas;}
+	inline std::string getPavarde() const {return pavarde;}
+	//--
+	inline void setVardas(std::string _vardas) {vardas=_vardas;}
+	inline void setPavarde(std::string _pavarde) {pavarde=_pavarde;}
+	~Person() {};
+};
+
+
+class Studentas : public Person {
+private:
 	int homeworkNum;
 	vector <int> grades;
 	int exam;
@@ -29,26 +42,23 @@ public:
 	Studentas() : final(0) { } // def konstruktorius
 	Studentas(std::string name, std::string surname);
 	// -------------------- Getteriai ----------------------
-	inline std::string getVardas() const { return vardas; }
-	inline std::string getPavarde() const { return pavarde; }
 	inline std::vector<int> getGrades() const { return grades; }
 	inline int getExam() const { return exam; }
 	inline int getHomeworkNum() const { return homeworkNum; }
 	inline int getFinal() const { return final; }
 
 	// -------------------- Setteriai -----------------------
-	inline void setVardas(std::string _vardas) { Studentas::vardas = _vardas; }
-	inline void setPavarde(std::string _pavarde) { Studentas::pavarde = _pavarde; }
-	// inline void set1grade(int g) { grades.push_back(g); }
 	inline void setGrades(std::vector<int> _nd) { Studentas::grades = _nd; }
 	inline void setExam(int _exam) { Studentas::exam = _exam; }
 	inline void setHomeworkNum(int _homeworkNum) { Studentas::homeworkNum = _homeworkNum; }
 	inline void setFinal(double _final) { Studentas::final = _final; }
 
 	Studentas(const Studentas& other) :					// copy constructor
-		vardas(other.vardas), pavarde(other.pavarde),
 		grades(other.grades), exam(other.exam),
-		homeworkNum(other.homeworkNum), final(other.final) {}
+		homeworkNum(other.homeworkNum), final(other.final) {
+			vardas = other.getVardas();
+			pavarde = other.getPavarde();
+		}
 
 	Studentas& operator = (const Studentas& other){		//copy assignment operator
 		vardas = other.vardas;
@@ -77,8 +87,8 @@ void Ivestis(T&, string, char, bool);
 
 void isvestis(vector <Studentas>, char);
 
-template <class T>
-void fileOutput(T, T, char, string);
+/*template <class T>
+void fileOutput(T, T, char, string);*/
 
 template <class T>
 void print(T, char, string);

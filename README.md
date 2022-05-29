@@ -267,3 +267,7 @@ class -O3 | 0.058s. | 0.544s. |   5.3s. |   61.8s.  |
 
 [v1.2](https://github.com/LCious/Objektinis2/releases/tag/v1.2) :
   * Realizuota `Rule of Three`.
+
+[v1.5](https://github.com/LCious/Objektinis2/releases/tag/v1.5) :
+  * Pridėta abstrakti bazinė klasė `Person`.
+  * `Studentas` klasė pertvarkyta į išvestinę (derived) `Person` klasę.

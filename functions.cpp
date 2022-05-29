@@ -206,7 +206,7 @@ void isvestis(vector <Studentas> studentas, char rt){								// isvestis i konso
 	}
 }
 
-template <class T>
+/*template <class T>
 void fileOutput(T winner, T loser, char rt, string outFileName){		
 	string wfile = "Winner_" + outFileName;
 	string lfile = "Loser_" + outFileName;
@@ -236,7 +236,7 @@ void fileOutput(T winner, T loser, char rt, string outFileName){
 		///winner.erase(winner.begin());
 	}
 	wout.close();
-}
+}*/
 
 template <class T>
 void print(T studentas, char rt, string outFileName){

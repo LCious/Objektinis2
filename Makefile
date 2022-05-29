@@ -1,5 +1,5 @@
 main: functions.o
-	g++ -o main main.cpp functions.o
+	g++ -o main *.cpp
 	
 funckijos:
 	g++ -c functions.cpp
