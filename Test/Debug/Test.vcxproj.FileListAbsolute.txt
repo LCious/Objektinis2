@@ -1,4 +1,0 @@
-C:\Users\LC\Desktop\Objektinis\v2.0\Test\Debug\Test.vcxproj.CopyComplete
-C:\Users\LC\Desktop\Objektinis\v2.0\Test\Debug\Test.exe
-C:\Users\LC\Desktop\Objektinis\v2.0\Test\Debug\gtest.pdb
-C:\Users\LC\Desktop\Objektinis\v2.0\Test\Debug\gtest_main.pdb
